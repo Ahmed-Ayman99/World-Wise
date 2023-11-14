@@ -8,7 +8,7 @@ const MainNav = () => {
       <ul className="list-none flex items-center gap-10">
         <li>
           <NavLink
-            to="/PRICING"
+            to="/pricing"
             className="no-underline text-lg font-semibold uppercase text-light2 "
           >
             PRICING

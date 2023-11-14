@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { createContext, useContext, useReducer } from "react";
 
 const currentCities = [
   {
@@ -55,7 +54,7 @@ const currentCities = [
 const CitiesContext = createContext();
 
 const initialState = {
-  cities: [],
+  cities: currentCities,
   currentCity: {},
 };
 
@@ -94,30 +93,14 @@ const reducer = (state, action) => {
 
 const CitiesProvider = ({ children }) => {
   const [{ cities, currentCity }, dispatch] = useReducer(reducer, initialState);
-  const [localCities, setLocalCities] = useLocalStorage(
-    currentCities,
-    "cities"
-  );
 
-  const createCity = (city) => {
-    setLocalCities((prev) => [...prev, city]);
+  const createCity = (city) =>
     dispatch({ type: "city/created", payload: city });
-  };
 
   const getCurrentCity = (city) =>
     dispatch({ type: "city/currentCity", payload: city });
 
-  const deleteCity = (id) => {
-    setLocalCities((prev) => prev.filter((city) => city.id !== id));
-    dispatch({ type: "city/deleted", payload: id });
-  };
-
-  const cityRecieved = (data) =>
-    dispatch({ type: "city/recieved", payload: data });
-
-  useEffect(() => {
-    cityRecieved(localCities);
-  }, [localCities]);
+  const deleteCity = (id) => dispatch({ type: "city/deleted", payload: id });
 
   return (
     <CitiesContext.Provider

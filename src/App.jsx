@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CitiesProvider } from "./contexts/CitiesContext";
 import { AuthProvider } from "./contexts/FakeAuthContext";
 
-import ProtectedRoute from "./pages/ProtectedRoute";
 import ToasterItem from "./ui/ToasterItem";
 import AppLayout from "./pages/AppLayout";
 import Countries from "./ui/Countries";
@@ -28,20 +27,15 @@ const App = () => {
               <Route path="/product" element={<Product />} />
               <Route path="/login" element={<Login />} />
             </Route>
-            <Route
-              path="app"
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
+
+            <Route path="/app" element={<AppLayout />}>
               <Route index element={<Navigate replace to="cities" />} />
-              <Route path="cities/:id" element={<CityItem />} />
               <Route path="cities" element={<Cities />} />
+              <Route path="cities/:id" element={<CityItem />} />
               <Route path="countries" element={<Countries />} />
               <Route path="form" element={<Form />} />
             </Route>
+
             <Route path="*" element={<p>Not Found</p>} />
           </Routes>
           <ToasterItem />
