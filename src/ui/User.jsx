@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/FakeAuthContext";
 import { useEffect } from "react";
 
-function User() {
+const User = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  function handleClick() {
+  const handleClick = () => {
     logout();
     navigate("/");
-  }
+  };
 
   useEffect(() => {
     if (!user) return navigate("/login");
@@ -30,6 +30,6 @@ function User() {
       </button>
     </div>
   );
-}
+};
 
 export default User;

@@ -2,17 +2,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import { useCities } from "../contexts/CitiesContext";
 import { BASE_URL } from "../utils/constants";
+
 import Message from "./Message";
 import Spinner from "./Spinner";
-import toast from "react-hot-toast";
 import Button from "../ui/Button";
 
-function Form() {
+const Form = () => {
   const [lat, lng] = useUrlPosition();
 
   const { createCity } = useCities();
@@ -21,15 +22,15 @@ function Form() {
   const [cityName, setCityName] = useState("");
   const [date, setDate] = useState(new Date());
   const [country, setCountry] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!lat && !lng) return;
 
-    (async function fetchCityData() {
+    (async () => {
       try {
         setIsLoading(true);
         setError("");
@@ -128,6 +129,6 @@ function Form() {
       </div>
     </form>
   );
-}
+};
 
 export default Form;

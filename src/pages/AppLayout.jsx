@@ -2,7 +2,7 @@ import Map from "../ui/Map";
 import Sidebar from "../ui/Sidebar";
 import User from "../ui/User";
 
-function AppLayout() {
+const AppLayout = () => {
   return (
     <div className="h-[100vh] p-6 overflow-auto flex relative">
       <Sidebar />
@@ -10,6 +10,6 @@ function AppLayout() {
       <User />
     </div>
   );
-}
+};
 
 export default AppLayout;

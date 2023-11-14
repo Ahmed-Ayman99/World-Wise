@@ -10,7 +10,7 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-function City() {
+const City = () => {
   const { id } = useParams();
   const { cities } = useCities();
 
@@ -24,6 +24,7 @@ function City() {
         <h6 className="uppercase text-[11px] font-black text-light1">
           City name
         </h6>
+
         <h3 className="flex items-center gap-[10px] text-[22px]">
           <span className="text-[32px] leading-[1]">{emoji}</span> {cityName}
         </h3>
@@ -33,6 +34,7 @@ function City() {
         <h6 className="uppercase text-[11px] font-black text-light1">
           You went to {cityName} on
         </h6>
+
         <p className="text-lg font-semibold">{formatDate(date || null)}</p>
       </div>
 
@@ -41,6 +43,7 @@ function City() {
           <h6 className="uppercase text-[11px] font-black text-light1">
             Your notes
           </h6>
+
           <p className="text-lg font-semibold">{notes}</p>
         </div>
       )}
@@ -49,6 +52,7 @@ function City() {
         <h6 className="uppercase text-[11px] font-black text-light1">
           Learn more
         </h6>
+
         <a
           className="text-base text-brand1 underline underline-offset-4"
           href={`https://en.wikipedia.org/wiki/${cityName}`}
@@ -64,6 +68,6 @@ function City() {
       </div>
     </div>
   );
-}
+};
 
 export default City;

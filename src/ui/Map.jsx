@@ -14,7 +14,7 @@ import { useGeolocation } from "../hooks/useGeolocation";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import Button from "../ui/Button";
 
-function Map() {
+const Map = () => {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
@@ -63,20 +63,20 @@ function Map() {
       </MapContainer>
     </div>
   );
-}
+};
 
-function ChangeCenter({ position }) {
+const ChangeCenter = ({ position }) => {
   const map = useMap();
   map.setView(position);
   return null;
-}
+};
 
-function DetectClick() {
+const DetectClick = () => {
   const navigate = useNavigate();
 
   useMapEvents({
     click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
   });
-}
+};
 
 export default Map;

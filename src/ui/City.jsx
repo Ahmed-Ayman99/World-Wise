@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useCities } from "../contexts/CitiesContext";
 import { formateDate } from "../utils/helpers";
 
-function City({ city }) {
+const City = ({ city }) => {
   const { deleteCity, currentCity, getCurrentCity } = useCities();
   const isCurrent = currentCity.id === city.id;
 
@@ -35,6 +35,6 @@ function City({ city }) {
       </NavLink>
     </li>
   );
-}
+};
 
 export default City;

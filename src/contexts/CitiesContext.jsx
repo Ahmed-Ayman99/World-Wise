@@ -1,6 +1,7 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
-const localCities = [
+const currentCities = [
   {
     cityName: "Lisbon",
     country: "Portugal",
@@ -54,12 +55,18 @@ const localCities = [
 const CitiesContext = createContext();
 
 const initialState = {
-  cities: localCities,
+  cities: [],
   currentCity: {},
 };
 
-function reducer(state, action) {
+const reducer = (state, action) => {
   switch (action.type) {
+    case "city/recieved":
+      return {
+        ...state,
+        cities: action.payload,
+      };
+
     case "city/created":
       return {
         ...state,
@@ -83,17 +90,34 @@ function reducer(state, action) {
     default:
       return state;
   }
-}
+};
 
-function CitiesProvider({ children }) {
+const CitiesProvider = ({ children }) => {
   const [{ cities, currentCity }, dispatch] = useReducer(reducer, initialState);
+  const [localCities, setLocalCities] = useLocalStorage(
+    currentCities,
+    "cities"
+  );
 
-  const createCity = (city) =>
+  const createCity = (city) => {
+    setLocalCities((prev) => [...prev, city]);
     dispatch({ type: "city/created", payload: city });
+  };
 
   const getCurrentCity = (city) =>
     dispatch({ type: "city/currentCity", payload: city });
-  const deleteCity = (id) => dispatch({ type: "city/deleted", payload: id });
+
+  const deleteCity = (id) => {
+    setLocalCities((prev) => prev.filter((city) => city.id !== id));
+    dispatch({ type: "city/deleted", payload: id });
+  };
+
+  const cityRecieved = (data) =>
+    dispatch({ type: "city/recieved", payload: data });
+
+  useEffect(() => {
+    cityRecieved(localCities);
+  }, [localCities]);
 
   return (
     <CitiesContext.Provider
@@ -108,13 +132,13 @@ function CitiesProvider({ children }) {
       {children}
     </CitiesContext.Provider>
   );
-}
+};
 
-function useCities() {
+const useCities = () => {
   const context = useContext(CitiesContext);
   if (context === undefined)
     throw new Error("CitiesContext was used outside the CitiesProvider");
   return context;
-}
+};
 
 export { CitiesProvider, useCities };

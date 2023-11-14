@@ -1,22 +1,22 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
 
 import { CitiesProvider } from "./contexts/CitiesContext";
 import { AuthProvider } from "./contexts/FakeAuthContext";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
-import Countries from "./ui/Countries";
-import CityItem from "./ui/CityItem";
+import ToasterItem from "./ui/ToasterItem";
 import AppLayout from "./pages/AppLayout";
-import LayOut from "./pages/LayOut";
+import Countries from "./ui/Countries";
 import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
-import Form from "./ui/Form";
-import Cities from "./ui/Cities";
+import CityItem from "./ui/CityItem";
+import LayOut from "./pages/LayOut";
 import Login from "./pages/Login";
+import Cities from "./ui/Cities";
 import Home from "./pages/Home";
+import Form from "./ui/Form";
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <CitiesProvider>
@@ -44,30 +44,11 @@ function App() {
             </Route>
             <Route path="*" element={<p>Not Found</p>} />
           </Routes>
-          <Toaster
-            position="top-center"
-            gutter={12}
-            containerStyle={{ margin: "8px" }}
-            toastOptions={{
-              success: {
-                duration: 3000,
-              },
-              error: {
-                duration: 4000,
-              },
-              style: {
-                fontSize: "1.6rem",
-                maxWidth: "50rem",
-                padding: ".6rem 1.2rem",
-                backgroundColor: "#00c46a",
-                color: "#fff",
-              },
-            }}
-          />
+          <ToasterItem />
         </BrowserRouter>
       </CitiesProvider>
     </AuthProvider>
   );
-}
+};
 
 export default App;

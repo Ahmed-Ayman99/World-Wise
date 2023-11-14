@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 
 import Button from "../ui/Button";
+import FormRow from "../ui/FormRow";
 
 const Login = () => {
   const [email, setEmail] = useState("ahmed@gmail.com");
@@ -26,14 +27,7 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="bg-dark2 rounded-md py-5 px-8  mx-auto flex flex-col gap-5 w-[460px]"
       >
-        <div className="flex flex-col mb-6 gap-[5px]">
-          <label
-            className="text-base font-semibold text-light2"
-            htmlFor="email"
-          >
-            Email address
-          </label>
-
+        <FormRow label="Email address">
           <input
             className="text-dark0 w-[100%] rounded-md py-2 px-3 transition-all duration-1000 text-base border-none bg-light3 focus:outline-none focus:bg-white "
             placeholder="ahme@email.com"
@@ -41,16 +35,9 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
+        </FormRow>
 
-        <div className="flex flex-col mb-6 gap-[5px]">
-          <label
-            className="text-base font-semibold text-light2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-
+        <FormRow label="Password">
           <input
             className="text-dark0 w-[100%] rounded-md py-2 px-3 transition-all duration-1000 text-base border-none bg-light3 focus:outline-none focus:bg-white "
             placeholder="PASSWOR"
@@ -58,11 +45,9 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
+        </FormRow>
 
-        <div className="">
-          <Button>Login</Button>
-        </div>
+        <Button>Login</Button>
       </form>
     </section>
   );
