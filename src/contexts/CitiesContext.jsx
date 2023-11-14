@@ -3,21 +3,9 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const currentCities = [
   {
-    cityName: "Lisbon",
-    country: "Portugal",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-    position: {
-      lat: 38.727881642324164,
-      lng: -9.140900099907554,
-    },
-    id: 73930385,
-  },
-  {
     cityName: "Madrid",
     country: "Spain",
-    emoji: "🇪🇸",
+    emoji: "ES",
     date: "2027-07-15T08:22:53.976Z",
     notes: "",
     position: {
@@ -29,7 +17,7 @@ const currentCities = [
   {
     cityName: "Berlin",
     country: "Germany",
-    emoji: "🇩🇪",
+    emoji: "DE",
     date: "2027-02-12T09:24:11.863Z",
     notes: "Amazing 😃",
     position: {
@@ -39,19 +27,54 @@ const currentCities = [
     id: 98443197,
   },
   {
-    cityName: "Nijar",
-    country: "Spain",
-    emoji: "🇪🇸",
-    date: "2023-04-03T07:47:59.202Z",
-    notes: "",
+    cityName: "Markaz al Qanţarah Sharq",
+    country: "Egypt",
+    emoji: "EG",
+    date: "2023-11-14T19:14:52.715Z",
+    notes: "nice",
+    id: "028136aa-ca73-4dd8-8d7d-9b26812238b2",
     position: {
-      lat: "36.967508314568164",
-      lng: "-2.13128394200588",
+      lat: "30.23412359202384",
+      lng: "32.87109375000001",
     },
-    id: 98443198,
+  },
+  {
+    cityName: "South Slave Region",
+    country: "Canada",
+    emoji: "CA",
+    date: "2023-11-14T19:15:11.865Z",
+    notes: "nice city",
+    id: "2d8e88b6-3d67-4126-97c3-799062c37653",
+    position: {
+      lat: "60.845398336292845",
+      lng: "-107.92968750000001",
+    },
+  },
+  {
+    cityName: "Amerzgane",
+    country: "Morocco",
+    emoji: "MA",
+    date: "2023-11-14T19:16:31.826Z",
+    notes: "Amazing City",
+    id: "bcf9c03c-cf3a-4d67-a835-c6bf63a8347f",
+    position: {
+      lat: "30.847083835164838",
+      lng: "-7.138261298128635",
+    },
+  },
+  {
+    cityName: "Peixoto de Azevedo",
+    country: "Brazil",
+    emoji: "BR",
+    date: "2023-11-14T19:17:07.401Z",
+    notes: "Good City",
+    id: "e652daf8-f91d-4c06-be4f-182101ba2374",
+    position: {
+      lat: "-10.324830356017559",
+      lng: "-53.21240086366223",
+    },
   },
 ];
-
 const CitiesContext = createContext();
 
 const initialState = {

@@ -9,8 +9,6 @@ const City = ({ city }) => {
 
   const handleCurrentCity = () => getCurrentCity(city);
 
-  console.log(city.emoji);
-
   return (
     <li onClick={handleCurrentCity}>
       <NavLink
