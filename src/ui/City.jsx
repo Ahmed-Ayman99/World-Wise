@@ -9,6 +9,8 @@ const City = ({ city }) => {
 
   const handleCurrentCity = () => getCurrentCity(city);
 
+  console.log(city.emoji);
+
   return (
     <li onClick={handleCurrentCity}>
       <NavLink
@@ -17,7 +19,11 @@ const City = ({ city }) => {
           isCurrent ? "border-[1px] border-brand2" : ""
         }`}
       >
-        <span className="text-[26px] ">{city.emoji}</span>
+        <img
+          className="w-6 h-4"
+          src={`https://flagcdn.com/${city.emoji.toLowerCase()}.svg`}
+          alt={`Flag of ${city.emoji}`}
+        />
         <span className="text-[17px] font-semibold mr-auto">
           {city.cityName}
         </span>
